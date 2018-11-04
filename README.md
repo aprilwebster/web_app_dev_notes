@@ -73,6 +73,9 @@ module.exports = {
    - `html-loader` Exports HTML as string, require references to static resources
    - `babel-loader` - required to load ES2015+ code and transpile it to ES5 using Babel
 
+#### modules
+https://webpack.js.org/configuration/module/
+
 ## es5 vs es6 - flavours of javascript
 
 ## Questions
