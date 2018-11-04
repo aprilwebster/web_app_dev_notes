@@ -14,9 +14,9 @@
 
 
 
-## webpack
+## webpack - static module bundler for JavaScript applications
 ### overview
-- builds source code (`/src`) into a minimized and optimized bundle for distribution purposes (`/dist`) to be loaded into the browser
+- **transpiles** (through "loaders") and **bundles** source code (`/src`) into a single minimized and optimized file for distribution purposes (`/dist`) to be loaded into the browser
 - builds a dependency graph of the dependencies a module needs and uses it to generate an optimized bundle where scripts
 are executed in the correct order
 
@@ -40,14 +40,16 @@ are executed in the correct order
    - plugins
    - resolve options
    - https://webpack.js.org/configuration/
+
+#### fields
+- `entry` - input file
+- `output` - directory and filename to persist the optimized and minimized code
+- `mode` - {"production" (default), "development", "none"} - tells webpack to use its built-in optimizations accordingly.
+- `module` - rules for how to handle differnt types of modules within a project
    
 #### basic `webpack.config.js`
 - to use it: `npx webpack --config webpack.config.js`
-- required fields:
-   - `entry` - input file
-   - `output` - directory and filename to persist the optimized and minimized code
-- optional fields:
-   - 'mode' - default is 'production' (if not included in the config file)
+
    
 ```
 const path = require('path');
@@ -60,5 +62,18 @@ module.exports = {
   }
 };
 ```
+### loaders
+- Loaders are transformations that are applied to the source code of a module. 
+- They are written as functions that accept source code as a parameter and return a new version of that code with transformations applied.
+- https://webpack.js.org/loaders/
+- sample loaders:
+   - `eslint-loader` PreLoader for linting code using ESLint
+   - `sass-loader` - required to load and compile a SASS/SCSS file
+   - `css-loader` - required to load CSS file with resolved imports and returns CSS code
+   - `html-loader` Exports HTML as string, require references to static resources
+   - `babel-loader` - required to load ES2015+ code and transpile it to ES5 using Babel
 
 ## es5 vs es6 - flavours of javascript
+
+## Questions
+1. if a `sass-loader` is specified in `webpack.config.js`, is it necessary to have something specified in the package.json to convert scss to css?
