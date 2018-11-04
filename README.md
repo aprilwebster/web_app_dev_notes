@@ -90,11 +90,27 @@ module.exports = {
       }
     }
     ```
+   - https://www.npmjs.com/package/babel-preset-es2015 - DEPRECATED - use @babel-preset-env
 
 #### modules
 https://webpack.js.org/configuration/module/
 
 ## es5 vs es6 - flavours of javascript
+
+## express vs react-router-dom
+### Express
+Express works on the server-side. Specifically, it runs on top of node.js
+Express is a 'web application framework', and can handle routes, accept client requests, retrieve data from databases, prepare views and send back responses.
+
+### React-router-dom
+React-router-dom is a client side routing library.
+You might be aware that in Single Page Applications, when a user navigates to a link, a request to the server is typically not sent. Instead, the client side router (like react-router-dom) interprets the request and show appropriate content (eg: a specific react component).
+
+### Why use express with react
+to serve your index.html and your bundle.js files, when a user first visits the site, (www.example.com)
+to redirect the user to www.example.com when someone directly visits www.example.com/subpage, which is typically handled by react-router-dom on the client,
+to serve static assets like icons and images on your page
+as an API backend for getting data from the server, etc
 
 ## Questions
 1. if a `sass-loader` is specified in `webpack.config.js`, is it necessary to have something specified in the package.json to convert scss to css?
