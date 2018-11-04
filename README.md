@@ -64,6 +64,7 @@ module.exports = {
 ```
 ### loaders
 - Loaders are transformations that are applied to the source code of a module. 
+- all loaders are named as `<type>-loader`
 - They are written as functions that accept source code as a parameter and return a new version of that code with transformations applied.
 - https://webpack.js.org/loaders/
 - sample loaders:
