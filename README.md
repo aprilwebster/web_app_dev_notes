@@ -73,6 +73,15 @@ module.exports = {
    - `css-loader` - required to load CSS file with resolved imports and returns CSS code
    - `html-loader` Exports HTML as string, require references to static resources
    - `babel-loader` - required to load ES2015+ code and transpile it to ES5 using Babel
+   
+#### babel-loader
+- https://webpack.js.org/loaders/babel-loader/
+- there's been a change in how to specify loaders from `babel 6.x` to `babel.7.x`
+   - webpack 4.x | babel-loader 8.x | babel 7.x:
+      - `npm install -D babel-loader @babel/core @babel/preset-env webpack`
+   - `webpack 4.x | babel-loader 7.x | babel 6.x
+      - `npm install -D babel-loader@7 babel-core babel-preset-env webpack`
+
 
 #### modules
 https://webpack.js.org/configuration/module/
