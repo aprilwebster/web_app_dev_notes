@@ -79,9 +79,17 @@ module.exports = {
 - there's been a change in how to specify loaders from `babel 6.x` to `babel.7.x`
    - webpack 4.x | babel-loader 8.x | babel 7.x:
       - `npm install -D babel-loader @babel/core @babel/preset-env webpack`
-   - `webpack 4.x | babel-loader 7.x | babel 6.x
+   - webpack 4.x | babel-loader 7.x | babel 6.x
       - `npm install -D babel-loader@7 babel-core babel-preset-env webpack`
-
+   ```
+   {
+      loader: 'babel-loader',
+      options: {
+        presets: ['@babel/preset-env'],
+        plugins: ['@babel/plugin-transform-runtime']
+      }
+    }
+    ```
 
 #### modules
 https://webpack.js.org/configuration/module/
