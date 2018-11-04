@@ -17,8 +17,7 @@
 ## webpack - static module bundler for JavaScript applications
 ### overview
 - **transpiles** (through "loaders") and **bundles** source code (`/src`) into a single minimized and optimized file for distribution purposes (`/dist`) to be loaded into the browser
-- builds a dependency graph of the dependencies a module needs and uses it to generate an optimized bundle where scripts
-are executed in the correct order
+   - will create a dependency graph of and uses it to generate an optimized bundle where scripts are executed in the correct order
 - core concepts: [Entry](https://webpack.js.org/concepts/#entry), [Output](https://webpack.js.org/concepts/#output), [Loaders](https://webpack.js.org/loaders/), [Mode](https://webpack.js.org/concepts/#mode), Plugins
 
 ### basic usage
