@@ -1,0 +1,64 @@
+# web_app_dev_notes
+
+## npm - package manager
+### installing packages
+- use `npm i <package_name> --save` for modules required in a production bundle
+- use `npm i <package_name> --save-dev` for modules used for development purposes (e.g., linter, testing libraries, etc)
+
+### npm scripts that can be added to `package.json`
+- https://docs.npmjs.com/misc/scripts
+- accessed using `npm run <script_name>`
+- default script values:
+   - `"start"` - if not specified and if there's a `server.js` file in the root of `package.json`, then npm will 
+   default the `npm start` command to run `node server.js`
+
+
+
+## webpack
+### overview
+- builds source code (`/src`) into a minimized and optimized bundle for distribution purposes (`/dist`) to be loaded into the browser
+- builds a dependency graph of the dependencies a module needs and uses it to generate an optimized bundle where scripts
+are executed in the correct order
+
+### basic usage
+- run it using `npx webpack` - expects input at `src/index.js` and generates a `dist/main.js` file
+
+### support for transpiling ES6 or ES5 (?)
+- some older browsers don't support javascript modules (e.g., import and export key words)
+- webpack has support for transpiling import, export and other JS module syntax to code that older browsers can run
+- details in webpack's Module API
+- if using other ES2015 features, will need to use transpiler middleware such as Babel or Buble and specify that in webpack's loader system.
+
+### configuration
+- webpack (v4+) doesn't require any configuration for basic use
+- if want to specify other configuration webpack has a standard configuration file: `webpack.config.js`
+   - if present, the webpack command picks it up by default
+- can also use a different name for the config file for more complex configurations
+   - in this case, use the `--config` option to pass a config of any name
+- other things that you can configure:
+   - loader rules
+   - plugins
+   - resolve options
+   - https://webpack.js.org/configuration/
+   
+#### basic `webpack.config.js`
+- to use it: `npx webpack --config webpack.config.js`
+- required fields:
+   - `entry` - input file
+   - `output` - directory and filename to persist the optimized and minimized code
+- optional fields:
+   - 'mode' - default is 'production' (if not included in the config file)
+   
+```
+const path = require('path');
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist')
+  }
+};
+```
+
+## es5 vs es6 - flavours of javascript
