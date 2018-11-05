@@ -23,6 +23,9 @@
 ### basic usage
 - run it using `npx webpack` - expects input at `src/index.js` and generates a `dist/main.js` file
 
+### adding it as a script to a package.json
+
+
 ### support for transpiling [ES6 (aka ES2015)](http://www.ecma-international.org/ecma-262/6.0/)
 - some older browsers don't support javascript modules (e.g., import and export key words)
 - webpack has support for transpiling import, export and other JS module syntax to code that older browsers can run
