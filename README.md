@@ -139,12 +139,22 @@ Generally speaking, you should use a `<BrowserRouter>` if you have a server that
  
  ### Sample patterns
  ```
+<BrowserRouter>
 <Switch>
    <Route exact path={match.url} render={() => {
    <Route path={`${match.url}/a`} render={() => <A />} />
    <Route path={`${match.url}/b`} render={() => <B />} />
    <Route path={`${match.url}/c`} render={() => <C />} />
 </Switch>
+</BrowserRouter
+```
+
+ ```
+<Router>
+   <Route path="a" component={<AView} />
+   <Route path="b" component={<BView} />
+   <Route path="c" component={<CView} />
+</Router>
 ```
 
 
