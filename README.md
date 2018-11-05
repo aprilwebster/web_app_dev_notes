@@ -101,19 +101,23 @@ https://webpack.js.org/configuration/module/
 ## es5 vs es6 - flavours of javascript
 
 ## express vs react-router-dom
-### Express
-Express works on the server-side. Specifically, it runs on top of node.js
-Express is a 'web application framework', and can handle routes, accept client requests, retrieve data from databases, prepare views and send back responses.
+`express` works on the server-side.  It handles the server API routes, accepts client requests, retrieve data from databases, prepare views and send back responses.
 
-### React-router-dom
-React-router-dom is a client side routing library composed of a collection of navigational components.
-You might be aware that in Single Page Applications, when a user navigates to a link, a request to the server is typically not sent. Instead, the client side router (like react-router-dom) interprets the request and show appropriate content (eg: a specific react component).
+`react-router-dom` works on the client-side.  It helps organize client-side pages - it interprets a request and shows the appropriate react component.
 
-### Why use express with react
-to serve your index.html and your bundle.js files, when a user first visits the site, (www.example.com)
-to redirect the user to www.example.com when someone directly visits www.example.com/subpage, which is typically handled by react-router-dom on the client,
-to serve static assets like icons and images on your page
-as an API backend for getting data from the server, etc
+In Single Page Applications, when a user navigates to a link, a request to the server is typically not sent. Instead, the client side router - `react-router-dom` handles the request and re-routes the client to the reaact component matching their request.
+
+## react-router-dom
+`react-router-dom` is a client side routing library composed of a collection of navigational components.
+
+### types of routers
+- there are two types of routers that are recommended for web applications.  Both will create a specialized history object for you.
+   1. `<BrowserRouter>`: a `<Router>` that uses the HTML5 history API (pushState, replaceState and the popstate event) to keep your UI in sync with the URL.
+   1. `<HashRouter>`: a `<Router>` that uses the hash portion of the URL (i.e. window.location.hash) to keep your UI in sync with the URL.
+
+### which router to use?
+Generally speaking, you should use a <BrowserRouter> if you have a server that responds to requests and a <HashRouter> if you are using a static file server.
+
 
 ### How to set it up
 - define the parent router in `index.js`, the entry point to the client app
@@ -133,12 +137,26 @@ as an API backend for getting data from the server, etc
    - questions:
       - there are different routers that can be used - Router, BrowserRouter, HashRouter, etc - when to use which?
  
-   
+
 
 ### Packages
 https://github.com/ReactTraining/react-router#packages
 
+## Why use express with react
+to serve your `index.html` and your `bundle.js` files, when a user first visits the site, (www.example.com)
+to redirect the user to www.example.com when someone directly visits www.example.com/subpage, which is typically handled by react-router-dom on the client,
+to serve static assets like icons and images on your page
+as an API backend for getting data from the server, etc 
 
+## Where to put your html files?
+What I frequently see when people use Node with Express to act as their webserver is the debate on if you should put your html files with node or with the client code.
+
+Where you store your files on the server doesn't matter. What does matter is that you don't generally want to serve static files from your Node.js application. Tools like express.static are for convenience only. Sometimes, you may have a low traffic application. In these cases, it is perfectly acceptable to serve files with your Node.js app. For anything with a decent traffic load, it's best to leave static serving up to a real web server such as Nginx, since these servers are far more efficient than your Node.js application.
+
+You should keep your application code (code that serves dynamic responses, such as an API server) within your Node.js application.
+
+It's also a good idea to put your Node.js application behind a proxy like Nginx so that the proxy can handle all of the client interaction (such as spoon-feeding slow clients) leaving your Node.js application to do what it does best. Again though, in low traffic situations it doesn't matter.
+https://stackoverflow.com/questions/28918845/what-exactly-does-serving-static-files-mean
 
 ## Questions
 1. if a `sass-loader` is specified in `webpack.config.js`, is it necessary to have something specified in the package.json to convert scss to css?
