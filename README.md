@@ -1,5 +1,8 @@
 # web_app_dev_notes
 
+## react
+Popular library for building SPAs. Doesn’t have a built-in solution for routing.
+
 ## npm - package manager
 ### installing packages
 - use `npm i <package_name> --save` for modules required in a production bundle
@@ -110,18 +113,29 @@ In Single Page Applications, when a user navigates to a link, a request to the s
 ## react-router-dom
 `react-router-dom` is a client side routing library composed of a collection of navigational components.
 
+Single-page applications (SPAs) rewrite sections of a page rather than reloading the entire page from the server.  Have a number of advantages, but it makes browser history difficult.  Because the application is a single page, it can't realy on the the browser's forward and backward buttons for history??
+
+
+
 ### react-router-dom vs react-router vs react-router-native
 If you're on the web then `react-router-dom` should have everything you need as it also exports the common components you'll need. If you're using React Native, `react-router-native` should have everything you need for the same reason. So you'll probably never have to import anything directly from `react-router`.
 
 In fact, in v4 `react-router` exports the core components and functions. `react-router-dom export`s DOM-aware components, like <Link> (which renders an <a>) and <BrowserRouter> (which interacts with the browser's window.history) and it re-exports all of `react-router`'s exports, so you only need to import from `react-router-dom` in your project.  https://github.com/ReactTraining/react-router/issues/4648#issuecomment-284479720
 
 ### types of routers in `react-router-dom`
-- there are two types of routers that are recommended for web applications.  Both will create a specialized history object for you.
-   1. `<BrowserRouter>`: a `<Router>` that uses the HTML5 history API (pushState, replaceState and the popstate event) to keep your UI in sync with the URL.
-   1. `<HashRouter>`: a `<Router>` that uses the hash portion of the URL (i.e. window.location.hash) to keep your UI in sync with the URL.
+- there are three types of routers that are recommended for web applications.  Both will create a specialized history object for you.
+   1. `<Router>`: use this if working with Redux.
+   1. `<BrowserRouter>`: a `<Router>` that uses the **HTML5 history API** (pushState, replaceState and the popstate event) to keep your UI in sync with the URL.
+   1. `<HashRouter>`: a `<Router>` that uses the **hash portion** of the URL (i.e. window.location.hash) to keep your UI in sync with the URL.
 
 #### which router to use?
-Generally speaking, you should use a `<BrowserRouter>` if you have a server that responds to requests and a `<HashRouter>` if you are using a static file server.
+If you’re going to target older browsers that don’t support the HTML5 History API, you should stick with `<HashRouter>`, which creates URLs with the following format: http://localhost:3000/#/route/subroute
+
+Otherwise, you can use `<BrowserRouter>`, which creates URLs with the following format: http://localhost:3000/route/subroute
+
+Generally speaking, you should use a `<BrowserRouter>` if you have a server that responds to requests and a `<HashRouter>` if you are using a static file server.  If you're using Redux, use `<Router>`.
+
+The most common use-case for using the low-level <Router> is to synchronize a custom history with a state management lib like Redux or Mobx. Note that this is not required to use state management libs alongside React Router, it’s only for deep integration.
 
 ### How to set it up
 - define the parent router in `index.js`, the entry point to the client app
@@ -141,6 +155,11 @@ Generally speaking, you should use a `<BrowserRouter>` if you have a server that
    - questions:
       - there are different routers that can be used - Router, BrowserRouter, HashRouter, etc - when to use which?
  
+### Three basic components
+1. `<Router>` The router that keeps the UI in sync with the URL.
+1. `<Link>` Renders a navigation link.
+1. `<Route>` Renders a UI component depending on the URL.
+
  ### Sample patterns
  ```
 <BrowserRouter>
@@ -161,6 +180,8 @@ Generally speaking, you should use a `<BrowserRouter>` if you have a server that
 </Router>
 ```
 
+### What's a <Switch>
+A `<Switch> renders the first child `<Route>` or `<Redirect>` that matches the location. 
 
 ### Packages
 https://github.com/ReactTraining/react-router#packages
