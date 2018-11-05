@@ -110,14 +110,18 @@ In Single Page Applications, when a user navigates to a link, a request to the s
 ## react-router-dom
 `react-router-dom` is a client side routing library composed of a collection of navigational components.
 
-### types of routers
+### react-router-dom vs react-router vs react-router-native
+If you're on the web then `react-router-dom` should have everything you need as it also exports the common components you'll need. If you're using React Native, `react-router-native` should have everything you need for the same reason. So you'll probably never have to import anything directly from `react-router`.
+
+In fact, in v4 `react-router` exports the core components and functions. `react-router-dom export`s DOM-aware components, like <Link> (which renders an <a>) and <BrowserRouter> (which interacts with the browser's window.history) and it re-exports all of `react-router`'s exports, so you only need to import from `react-router-dom` in your project.  https://github.com/ReactTraining/react-router/issues/4648#issuecomment-284479720
+
+### types of routers in `react-router-dom`
 - there are two types of routers that are recommended for web applications.  Both will create a specialized history object for you.
    1. `<BrowserRouter>`: a `<Router>` that uses the HTML5 history API (pushState, replaceState and the popstate event) to keep your UI in sync with the URL.
    1. `<HashRouter>`: a `<Router>` that uses the hash portion of the URL (i.e. window.location.hash) to keep your UI in sync with the URL.
 
-### which router to use?
+#### which router to use?
 Generally speaking, you should use a `<BrowserRouter>` if you have a server that responds to requests and a `<HashRouter>` if you are using a static file server.
-
 
 ### How to set it up
 - define the parent router in `index.js`, the entry point to the client app
