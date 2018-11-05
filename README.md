@@ -24,7 +24,7 @@
 - run it using `npx webpack` - expects input at `src/index.js` and generates a `dist/main.js` file
 
 ### adding it as a script to a package.json
-![package.json](./images/webpack_in_packagejson.png)
+![package.json](images/webpack_in_packagejson.png)
 
 ### support for transpiling [ES6 (aka ES2015)](http://www.ecma-international.org/ecma-262/6.0/)
 - some older browsers don't support javascript modules (e.g., import and export key words)
@@ -106,7 +106,7 @@ Express works on the server-side. Specifically, it runs on top of node.js
 Express is a 'web application framework', and can handle routes, accept client requests, retrieve data from databases, prepare views and send back responses.
 
 ### React-router-dom
-React-router-dom is a client side routing library.
+React-router-dom is a client side routing library composed of a collection of navigational components.
 You might be aware that in Single Page Applications, when a user navigates to a link, a request to the server is typically not sent. Instead, the client side router (like react-router-dom) interprets the request and show appropriate content (eg: a specific react component).
 
 ### Why use express with react
@@ -114,6 +114,31 @@ to serve your index.html and your bundle.js files, when a user first visits the 
 to redirect the user to www.example.com when someone directly visits www.example.com/subpage, which is typically handled by react-router-dom on the client,
 to serve static assets like icons and images on your page
 as an API backend for getting data from the server, etc
+
+### How to set it up
+- define the parent router in `index.js`, the entry point to the client app
+   - if using webpack, this would be the `entry` specified in the webpack config file
+   - it'll wrap the `App.jsx` (i.e., the parent React component for the client-side web application)
+   - Example:
+      ```
+      import React from 'react';
+      import { render } from 'react-dom';
+      
+      render((
+         <Router>
+            <App />
+         </Router>
+      ), document.getElementById('app')); // the unique id for the div element in index.html where the react client should be rendered
+      ```
+   - questions:
+      - there are different routers that can be used - Router, BrowserRouter, HashRouter, etc - when to use which?
+ 
+   
+
+### Packages
+https://github.com/ReactTraining/react-router#packages
+
+
 
 ## Questions
 1. if a `sass-loader` is specified in `webpack.config.js`, is it necessary to have something specified in the package.json to convert scss to css?
