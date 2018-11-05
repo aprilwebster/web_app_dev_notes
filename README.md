@@ -146,7 +146,7 @@ Generally speaking, you should use a `<BrowserRouter>` if you have a server that
    <Route path={`${match.url}/b`} render={() => <B />} />
    <Route path={`${match.url}/c`} render={() => <C />} />
 </Switch>
-</BrowserRouter
+</BrowserRouter>
 ```
 
  ```
