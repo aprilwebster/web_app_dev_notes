@@ -116,7 +116,7 @@ In Single Page Applications, when a user navigates to a link, a request to the s
    1. `<HashRouter>`: a `<Router>` that uses the hash portion of the URL (i.e. window.location.hash) to keep your UI in sync with the URL.
 
 ### which router to use?
-Generally speaking, you should use a <BrowserRouter> if you have a server that responds to requests and a <HashRouter> if you are using a static file server.
+Generally speaking, you should use a `<BrowserRouter>` if you have a server that responds to requests and a `<HashRouter>` if you are using a static file server.
 
 
 ### How to set it up
@@ -137,6 +137,15 @@ Generally speaking, you should use a <BrowserRouter> if you have a server that r
    - questions:
       - there are different routers that can be used - Router, BrowserRouter, HashRouter, etc - when to use which?
  
+ ### Sample patterns
+ ```
+<Switch>
+   <Route exact path={match.url} render={() => {
+   <Route path={`${match.url}/a`} render={() => <A />} />
+   <Route path={`${match.url}/b`} render={() => <B />} />
+   <Route path={`${match.url}/c`} render={() => <C />} />
+</Switch>
+```
 
 
 ### Packages
