@@ -160,7 +160,9 @@ The most common use-case for using the low-level <Router> is to synchronize a cu
 1. `<Link>` Renders a navigation link.
 1. `<Route>` Renders a UI component depending on the URL.
 
- ### Sample patterns
+### Sample patterns
+Note: a `<Router>` can ONLY have ONE child element, so if you want to add multiple `<Route>`s to a `<Router>`, you must contain them in  either a `<div>` element or a `<Switch>` element if you only want one <Route> to render. (https://github.com/ReactTraining/react-router/issues/4928#issuecomment-292432625)
+   
  ```
 <BrowserRouter>
 <Switch>
@@ -174,10 +176,21 @@ The most common use-case for using the low-level <Router> is to synchronize a cu
 
  ```
 <Router>
+<div>
    <Route path="a" component={<AView} />
    <Route path="b" component={<BView} />
    <Route path="c" component={<CView} />
+</div>
 </Router>
+```
+Note: a <Router> can only have one child element
+```
+<BrowserRouter>
+  <div>
+      <Route path="/" component={App} />
+      <Route path="/01" component={Record} />
+  </div>
+</BrowserRouter>
 ```
 
 ### What's a <Switch>
