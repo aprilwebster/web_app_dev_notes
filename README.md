@@ -110,6 +110,21 @@ https://webpack.js.org/configuration/module/
 
 In Single Page Applications, when a user navigates to a link, a request to the server is typically not sent. Instead, the client side router - `react-router-dom` handles the request and re-routes the client to the reaact component matching their request.
 
+## integrating express and react-router-dom
+- any request whose path starts with /api will be handled by the server api router
+- all all the requests - aka the client routes - will be handled by the asterisk
+   - it is important to use the wild card (`*`) if there are multiple routes for the react client app
+
+```
+// routes
+const apiRoutes = require('./server/routes/api');
+app.use('/api', apiRoutes);
+
+app.get('*', function(req, res) {
+    res.sendFile(path.resolve(__dirname) + '/server/static/index.html');
+});
+```
+
 ## react-router-dom
 `react-router-dom` is a client side routing library composed of a collection of navigational components.
 
